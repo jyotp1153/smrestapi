@@ -1,0 +1,55 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/smsRestapi
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    hikari:
+      idle-timeout: 30000
+      leak-detection-threshold: 2000
+      connection-timeout: 30000
+      maximum-pool-size: 5
+
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  application:
+    name: fdvm-kanpur
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+server:
+  port: 9090
+  servlet:
+    context-path: /student-restapi
+
+application:
+  config:
+    trace: true
+
+aws:
+  bucket: ${AWS_BUCKET}
+  region: ${AWS_REGION}
+  s3-url: ${AWS_S3_URL}
+  stack:
+    auto: false
+jwt:
+  tokenValidityInSeconds: 2160000 #200 hours
+
+springdoc:
+  api-docs:
+    path: /v1/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
